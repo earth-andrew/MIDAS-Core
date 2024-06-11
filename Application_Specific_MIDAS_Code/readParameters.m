@@ -29,9 +29,6 @@ modelParameters.utility_iYears = floor(0.5 * modelParameters.numCycles); %Check 
 modelParameters.educationCost = 0;
 modelParameters.largeFarmCost = 400;
 modelParameters.smallFarmCost = 100;
-modelParameters.skilledUtility = 100;
-modelParameters.ag2Utility = 30;
-modelParameters.unskilled1Utility = 10;
 modelParameters.schoolLength = 16;
 modelParameters.educationLayer = 6; %Need to denote which layer is education, as this is used in trainingTracker as a flag for when someone completes education
 
