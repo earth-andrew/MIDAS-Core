@@ -36,6 +36,9 @@ modelParameters.educationLayer = 6; %Need to denote which layer is education, as
 %Aspirations Flag
 modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirations
 
+%Place attachment Flag 
+modelParameters.placeAttachmentFlag = 1; %0 for no PA; 1 for PA
+
 modelParameters.remitRate = 0;
 modelParameters.creditMultiplier = 0.3;
 modelParameters.normalFloodMultiplier = 1;
@@ -123,6 +126,17 @@ agentParameters.uninformedMaxExpectedProbJoinLayerMean = 0.4;
 agentParameters.uninformedMaxExpectedProbJoinLayerSD = 0;
 agentParameters.expectationDecayMean = 0.1;
 agentParameters.expectationDecaySD = 0;
+
+%agent parameters for place attachment
+agentParameters.placeAttachmentMean = 0.3;
+agentParameters.placeAttachmentSD = 0.2;
+agentParameters.placeAttachmentGrowMean = 0.01;
+agentParameters.placeAttachmentGrowSD = 0;
+agentParameters.placeAttachmentDecayMean = 0.001;
+agentParameters.placeAttachmentDecaySD = 0;
+agentParameters.initialPlaceAttachmentMean = 0.5;
+agentParameters.initialPlaceAttachmentSD = 0;
+
 
 %override any input variables. 'inputs' should be a dataset with two columns,
 %one with the parameter name and one with the value

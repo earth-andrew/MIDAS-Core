@@ -227,8 +227,8 @@ for indexT = 1:modelParameters.timeSteps
 
         if(rand() < currentAgent.pChoose && indexT > modelParameters.spinupTime && currentAgent.age >= modelParameters.ageDecision)
             [currentAgent, moved] = choosePortfolio(currentAgent, utilityVariables, indexT, modelParameters, mapParameters, demographicVariables, mapVariables);
-
-            %fprintf(['Agent ' num2str(indexA) ' considered options.\n']);
+            if(moved == 1)
+                fprintf(['Agent ' num2str(currentAgent) ' will move.\'])
             currentAgent.agentPortfolioHistory{indexT} = currentAgent.currentPortfolio;
             currentAgent.agentAspirationHistory{indexT} = currentAgent.currentAspiration;
             currentAgent.consideredHistory{indexT} = currentAgent.consideredPortfolios;

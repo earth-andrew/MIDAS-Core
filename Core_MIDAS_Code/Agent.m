@@ -37,6 +37,8 @@ classdef Agent < handle
        heardOpening
        expectedProbOpening
        timeProbOpeningUpdated
+       currentPlaceAttachment
+       currentPAScaler
 
        %incomeLayersTest
        currentPortfolio
@@ -74,6 +76,9 @@ classdef Agent < handle
        rValue
        bList
        prospectLoss
+       placeAttachment
+       placeAttachmentGrow
+       placeAttachmentDecay
    end
    
    events
