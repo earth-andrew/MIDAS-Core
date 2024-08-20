@@ -233,11 +233,34 @@ if isempty(portfolio)
             [minValue,selectableLayers] = min(utilityCosts);
         end
         
-        %Build portfolio based on currently selectable layers
         portfolio = fillPortfolio(portfolio,constraints,selectable,portfolioPrereqs);
+        
+        %Build portfolio based on currently selectable layers
+        %while(sum(timeRemaining) > 0 && any(selectableLayers))
+            %selectableInd = ceil(rand()*length(selectableLayers));
+            %nextElement = selectableLayers(selectableInd);
+            %selectableLayers(selectableInd) = [];
+        
+            %if(~portfolio(nextElement))  %if this one isn't already in the portfolio
+                %make a temporary portfolio for consideration
+                %tempPortfolio = portfolio;
+                %tempPortfolio(nextElement) = true;
+                %timeUse = timeCalc(constraints, tempPortfolio, modelParameters);    
+                %timeExceedance = sum(sum(timeUse > 1)) > 0;
 
-        %If aspirations flag is turned on, create aspirations elements
-        %(otherwise set portfolioSet equal to current portfolio)
+                %Add to portfolio if time is not exceeded
+                %if(~timeExceedance)
+                    %portfolio(nextElement) = true;
+                    %timeUse = timeCalc(constraints, portfolio, modelParameters);
+                    %remove any that are OBVIOUSLY over the limit, though this won't
+                    %catch any that have other time constraints tied to prereqs
+                    %timeRemaining = 1 - timeUse;
+                    %layers(sum(constraints(layers,2:end) > timeRemaining,2) > 0) = [];
+                %end
+            %end
+        %end
+        
+        %Now, if aspirations flag is turned on, create aspirations elements 
         if modelParameters.aspirationsFlag == 0
             portfolioSets = [portfolio' numPeriodsEvaluate 1];
         else

@@ -34,7 +34,7 @@ modelParameters.educationLayer = 6; %Need to denote which layer is education, as
 
 
 %Aspirations Flag
-modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirations
+modelParameters.aspirationsFlag = 1; %0 for no aspirations, 1 to enable aspirations
 
 modelParameters.remitRate = 0;
 modelParameters.creditMultiplier = 0.3;

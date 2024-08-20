@@ -110,7 +110,7 @@ consideredPortfolioSet = []; %List of portfolios considered by agent across all 
 
 %Update agent pre-requisites, with special function for education (to
 %account for minimum number of years needed)
-[agent, backCastCount] = trainingTracker(agent, utilityVariables, modelParameters, backCastCount, currentT);
+[agent] = trainingTracker(agent, utilityVariables, modelParameters, backCastCount, currentT);
 
 %Check which layers are "selectable" based on agent prereqs
 selectable = selectableFlag(utilityVariables.utilityPrereqs, utilityVariables.utilityAccessCodesMat, utilityVariables.utilityAccessCosts, agent.training, agent.experience, agent.currentPortfolio, agent.wealth, utilityVariables.utilityDuration(:,2));
@@ -162,7 +162,6 @@ for indexL = 1:length(locationList)
 
     %last, come up with a few random portfolios to finish
     for indexP = (currentPortfolio):totalNumPortfolios
-
         [nextRandom, backCastCount] = createPortfolio([], find(any(agent.knowsIncomeLocation(locationList(indexL),:),1)),utilityVariables.utilityTimeConstraints, utilityVariables.utilityPrereqs, agent.pAddFitElement, agent.training, agent.experience, utilityVariables.utilityAccessCosts, utilityVariables.utilityDuration, agent.numPeriodsEvaluate, selectable, utilityVariables.utilityHistory(indexL,:,currentT-4:currentT-1), agent.wealth, backCastCount, utilityVariables.utilityAccessCodesMat, modelParameters);
         totalPortfoliosCreated = totalPortfoliosCreated + 1;
         if(~isempty(nextRandom))
@@ -418,8 +417,6 @@ for indexL = 1:length(locationList)
         if(and(currentMovingCost + newCosts > 0, agent.wealth - currentMovingCost - newCosts < modelParameters.creditMultiplier * sum(utilityVariables.utilityAccessCosts(agent.accessCodesPaid,2))))
             exceedsCreditLimit(indexP) = true;
         end
-
-        testchoosePortfolio3 = agent.currentPortfolio;
 
         if(and(and(locationList(indexL) == agent.matrixLocation, exceedsCreditLimit == true), sum((portfolioSet{indexP}(1,1:size(utilityVariables.utilityHistory,2)) == agent.currentPortfolio(1,1:size(utilityVariables.utilityHistory,2))) == 0) == 0 ))
             %New addition - check that this makes sense
