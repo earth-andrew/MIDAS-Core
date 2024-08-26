@@ -113,7 +113,7 @@ consideredPortfolioSet = []; %List of portfolios considered by agent across all 
 [agent] = trainingTracker(agent, utilityVariables, modelParameters, backCastCount, currentT);
 
 %Check which layers are "selectable" based on agent prereqs
-selectable = selectableFlag(utilityVariables.utilityPrereqs, utilityVariables.utilityAccessCodesMat, utilityVariables.utilityAccessCosts, agent.training, agent.experience, agent.currentPortfolio, agent.wealth, utilityVariables.utilityDuration(:,2));
+selectable = selectableFlag(utilityVariables.utilityPrereqs, utilityVariables.utilityAccessCodesMat, utilityVariables.utilityAccessCosts, utilityVariables.utilityRestrictions, agent.training, agent.experience, agent.currentPortfolio, agent.wealth, agent.layerFlag, utilityVariables.utilityDuration(:,2));
 
 %for each location, find a good income portfolio - the current portfolio
 %(if this is home city), some other good portfolios from past searches, and
@@ -162,7 +162,7 @@ for indexL = 1:length(locationList)
 
     %last, come up with a few random portfolios to finish
     for indexP = (currentPortfolio):totalNumPortfolios
-        [nextRandom, backCastCount] = createPortfolio([], find(any(agent.knowsIncomeLocation(locationList(indexL),:),1)),utilityVariables.utilityTimeConstraints, utilityVariables.utilityPrereqs, agent.pAddFitElement, agent.training, agent.experience, utilityVariables.utilityAccessCosts, utilityVariables.utilityDuration, agent.numPeriodsEvaluate, selectable, utilityVariables.utilityHistory(indexL,:,currentT-4:currentT-1), agent.wealth, backCastCount, utilityVariables.utilityAccessCodesMat, modelParameters);
+        [nextRandom, backCastCount] = createPortfolio([], find(any(agent.knowsIncomeLocation(locationList(indexL),:),1)),utilityVariables.utilityTimeConstraints, utilityVariables.utilityPrereqs, agent.pAddFitElement, agent.training, agent.experience, agent.layerFlag, utilityVariables.utilityAccessCosts, utilityVariables.utilityRestrictions, utilityVariables.utilityDuration, agent.numPeriodsEvaluate, selectable, utilityVariables.utilityHistory(indexL,:,currentT-4:currentT-1), agent.wealth, backCastCount, utilityVariables.utilityAccessCodesMat, modelParameters);
         totalPortfoliosCreated = totalPortfoliosCreated + 1;
         if(~isempty(nextRandom))
             portfolioSet{indexP} = nextRandom;   

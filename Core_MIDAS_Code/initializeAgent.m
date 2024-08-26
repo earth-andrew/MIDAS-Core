@@ -88,4 +88,6 @@ newAgent.bList = bList;
 newAgent.prospectLoss = prospectLoss;
 newAgent.age = age;
 newAgent.gender = gender;
+newAgent.layerFlag = gender; %Set agent's layer flag based on gender (1=Male, 2=Female)
+
 end

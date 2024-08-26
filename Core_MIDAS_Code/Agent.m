@@ -12,6 +12,8 @@ classdef Agent < handle
        TOD
        DOB
        trapped
+       layerFlag %Flag for category of layers that are available to agent, based on ID e.g. gender, caste, etc.
+       
        
        %agent accumulated data
        network

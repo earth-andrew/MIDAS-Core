@@ -39,7 +39,7 @@ end
 %Test if agent aspiration is now selectable (if aspirations are turned on)
 if modelParameters.aspirationsFlag == 1
 
-    selectableLayers = selectableFlag(utilityVariables.utilityPrereqs, utilityVariables.utilityAccessCodesMat, utilityVariables.utilityAccessCosts, currentAgent.training, currentAgent.experience, [], [], utilityVariables.utilityDuration(:,2));
+    selectableLayers = selectableFlag(utilityVariables.utilityPrereqs, utilityVariables.utilityAccessCodesMat, utilityVariables.utilityAccessCosts, utilityVariables.utilityRestrictions, currentAgent.training, currentAgent.experience, [], [], currentAgent.layerFlag, utilityVariables.utilityDuration(:,2));
 
     if any(selectableLayers' & currentAgent.currentAspiration)
         [currentAgent.currentPortfolio, ~] = createPortfolio(currentAgent.currentAspiration, [],utilityVariables.utilityTimeConstraints, utilityVariables.utilityPrereqs, currentAgent.pAddFitElement, currentAgent.training, currentAgent.experience, utilityVariables.utilityAccessCosts, utilityVariables.utilityDuration, currentAgent.numPeriodsEvaluate, selectableLayers, [], currentAgent.wealth, backCastNum, utilityVariables.utilityAccessCodesMat, modelParameters);

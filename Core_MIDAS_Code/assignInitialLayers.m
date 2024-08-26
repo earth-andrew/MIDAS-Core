@@ -17,10 +17,15 @@ for indexA = 1:length(agentList)
    
    currentAgent.currentPortfolio = false(size(utilityVariables.utilityLayerFunctions,1),1); 
    currentAgent.currentAspiration = false(size(utilityVariables.utilityLayerFunctions,1),1);
-   selectable = true(size(utilityVariables.utilityBaseLayers,2),1); %Initially, allow agent to access all layers
+
+    %Initially, allow agent to access all layers except those restricted by
+    %agent identity
+   selectable = true(size(utilityVariables.utilityBaseLayers,2),1); 
+   [restrictedLayers,~] = find(utilityVariables.utilityRestrictions(:,currentAgent.layerFlag) == 0);
+   selectable(restrictedLayers) = 0;
 
    %randomly assign a couple of the initial base layers
-   [portfolioSet, backCastCount] = createPortfolio([], find(selectable),utilityVariables.utilityTimeConstraints, utilityVariables.utilityPrereqs, currentAgent.pAddFitElement, currentAgent.training, currentAgent.experience, utilityVariables.utilityAccessCosts, utilityVariables.utilityDuration, currentAgent.numPeriodsEvaluate, selectable, utilityVariables.utilityHistory(1,:,:), currentAgent.wealth, backCastCount, utilityVariables.utilityAccessCodesMat, modelParameters);
+   [portfolioSet, backCastCount] = createPortfolio([], find(selectable),utilityVariables.utilityTimeConstraints, utilityVariables.utilityPrereqs, currentAgent.pAddFitElement, currentAgent.training, currentAgent.experience, currentAgent.layerFlag, utilityVariables.utilityAccessCosts, utilityVariables.utilityRestrictions, utilityVariables.utilityDuration, currentAgent.numPeriodsEvaluate, selectable, utilityVariables.utilityHistory(1,:,:), currentAgent.wealth, backCastCount, utilityVariables.utilityAccessCodesMat, modelParameters);
 
    currentAgent.currentPortfolio = logical(portfolioSet(1,1:size(utilityVariables.utilityHistory,2)));
    if portfolioSet(end,end) == 0

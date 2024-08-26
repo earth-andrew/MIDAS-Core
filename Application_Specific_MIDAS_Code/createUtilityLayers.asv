@@ -1,4 +1,4 @@
-function [ utilityLayerFunctions, utilityHistory, utilityAccessCosts, utilityTimeConstraints, utilityDuration, utilityAccessCodesMat, utilityPrereqs, utilityRestrictions, utilityBaseLayers, utilityForms, incomeForms, nExpected, hardSlotCountYN ] = createUtilityLayers(locations, modelParameters, demographicVariables )
+function [ utilityLayerFunctions, utilityHistory, utilityAccessCosts, utilityTimeConstraints, utilityDuration, utilityAccessCodesMat, utilityPrereqs, utilityBaseLayers, utilityForms, incomeForms, nExpected, hardSlotCountYN ] = createUtilityLayers(locations, modelParameters, demographicVariables )
 %createUtilityLayers defines the different income/utility layers (and the
 %functions that generate them)
 
@@ -113,14 +113,6 @@ utilityDuration = [4 inf; %unskilled 1
     16 inf; %ag 2
     modelParameters.schoolLength modelParameters.schoolLength; %school
     ];
-
-% Array of identity-based restrictions (column 1: male; column 2: female)
-utilityRestrictions = [1 1;
-                       1 0;
-                       1 0;
-                       1 0;
-                       1 0;
-                       1 0];
 
 quarterShare = incomeQs ./ (sum(incomeQs,2));
 quarterShare(isnan(quarterShare)) = 0;
@@ -239,7 +231,6 @@ utilityTimeConstraints = [(1:size(utilityTimeConstraints,1))' utilityTimeConstra
 %progressive investment in a particular line of utility (e.g., farmland)
 utilityPrereqs = zeros(size(utilityTimeConstraints,1));
 
-
 %for now, no prereqs, but can apply the below code if we want to link 1st
 %through 5th (for example) layers in farming, livestock, etc., to capture
 %the idea of simply growing the enterprise
@@ -257,7 +248,10 @@ utilityPrereqs(2, 1) = 1; %unskilled 2 requires unskilled 1
 utilityPrereqs(5, 4) = 1; %ag 2 requires ag 1
 utilityPrereqs(3, 6) = 1; %skilled labor requires school
 
-
+%%%%%%%%%%%%%%%%%%%%
+%Adding in identity-based restrictions (e.g. gender or caste)
+utilityRestrictions(1:3,1) = 1;
+utilityRestrictions(4:6,2) = 1;
 
 
 

@@ -1,4 +1,4 @@
-function selectable = selectableFlag(prereqs, accesscodes, utilityCosts, agentTraining, agentExperience, agentPortfolio, agentWealth, maxDuration)
+function selectable = selectableFlag(prereqs, accesscodes, utilityCosts, utilityRestrictions, agentTraining, agentExperience, agentPortfolio, agentWealth, agentLayerFlag, maxDuration)
 %Script to identify layers as "selectable" (agent has met prereqs,
 %can afford costs, and has not exceeded max duration of layer) or not. Returns logical array of true (selectable) or
 %false (not selectable because of missing prereqs or insufficient savings)
@@ -15,6 +15,7 @@ traininggap = agentTraining' - neededTraining; %NxN matrix where -1 indicates a 
  
 %Need to adjust this to if statement that excludes agent from having to afford prereqs if they already have certifications
 for indexI = 1:portfolioLayers
+
     %Calculate total cost of accessing layer
     layercost = sum(utilityCosts(accesscodes(:,indexI)>0,2)); %Adding utility costs to access each layer in portfolio
     
@@ -29,7 +30,7 @@ for indexI = 1:portfolioLayers
         
         %Now check if agent has at least one of those layers (as there may
         %be multiple possible enabling layers reflecting rural or urban
-        %space
+        %space)
         if ~any(agentTraining(enablingLayers))
             selectable(indexI) = 0;
         end
@@ -41,6 +42,10 @@ for indexI = 1:portfolioLayers
         %selectable(indexI) = 0;
      %end
 end
+
+%Finally, adjust for gender or other identity-based restrictions
+[restrictedLayers,~] = find(utilityRestrictions(:,agentLayerFlag) == 0);
+selectable(restrictedLayers) = 0;
 
 %Convert to logical array with selectable layers set as "true"
 selectable = (selectable > 0)';

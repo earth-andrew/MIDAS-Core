@@ -1,4 +1,4 @@
-function [portfolioSets, backCastNum] = createPortfolio(portfolio, layers, constraints, prereqs, pAdd, agentTraining, agentExperience, utilityCosts, utilityDuration, numPeriodsEvaluate, selectable, currentUtilities, agentWealth, backCastNum, accesscodes, modelParameters)
+function [portfolioSets, backCastNum] = createPortfolio(portfolio, layers, constraints, prereqs, pAdd, agentTraining, agentExperience, agentLayerFlag, utilityCosts, utilityRestrictions, utilityDuration, numPeriodsEvaluate, selectable, currentUtilities, agentWealth, backCastNum, accesscodes, modelParameters)
 %createPortfolio draws a random portfolio of utility layers that fit the current time constraint
 
 %Steps:
@@ -144,7 +144,7 @@ if isempty(portfolio)
                 %Re-assess which layers are selectable after high-fidelity duration
                 tempPortfolio = samplePortfolio;
 
-                selectableLayers = selectableFlag(prereqs, accesscodes, utilityCosts, agentTraining, newTraining, tempPortfolio, agentResources, utilityDuration(:,2));
+                selectableLayers = selectableFlag(prereqs, accesscodes, utilityCosts, utilityRestrictions, agentTraining, newTraining, tempPortfolio, agentResources, agentLayerFlag, utilityDuration(:,2));
                 tempPortfolio(~selectableLayers) = false;
                 
                 %Fill up medium-term portfolio
