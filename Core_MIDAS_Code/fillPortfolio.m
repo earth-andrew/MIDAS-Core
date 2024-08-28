@@ -7,7 +7,7 @@ timeUse = sum(constraints(samplePortfolio,2:end),1);
 timeRemaining = 1 - timeUse;
 
 %Identify remaining selectable layers that could be added
-selectableLayers = selectable & ~samplePortfolio;
+selectableLayers = selectable' & ~samplePortfolio;
 
 %Add one selectableLayer at random
 while (sum(timeRemaining) > 0 && any(selectableLayers))
@@ -27,7 +27,7 @@ end
 
 %Check if time constraints are exceeded in any time step. If so, remove
 %layers at random until all periods fit under constraints
-while any(sum(timeRemaining,1) < 0)  
+while any(timeRemaining < 0)  
     tempLayers = find(samplePortfolio);
     tempLayers(ismember(tempLayers,portfolioPrereqs)) = [];
                 
