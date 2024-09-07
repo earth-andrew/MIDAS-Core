@@ -2,13 +2,13 @@ function [agentParameters, modelParameters, networkParameters, mapParameters] = 
 
 %All model parameters go here
 modelParameters.spinupTime = 10;
-modelParameters.numAgents = 100;
+modelParameters.numAgents = 200;
 mapParameters.sizeX = 600;
 mapParameters.sizeY = 600;
 mapParameters.levelID = '_PCODE';
 mapParameters.levelName = '_EN';
 modelParameters.cycleLength = 4;
-modelParameters.numCycles = 1;
+modelParameters.numCycles = 25;
 modelParameters.incomeInterval = 1;
 modelParameters.visualizeYN = 1;
 modelParameters.listTimeStepYN = 1;
@@ -43,7 +43,7 @@ modelParameters.ruralUrbanTime = 0.2; %Round 1: 0.15; %Proportion of time needed
 mapParameters.movingCostPerMile = 0; %Round 1: 5725
 mapParameters.minDistForCost = 50;
 mapParameters.maxDistForCost = 400;
-mapParameters.movingAdminCosts = [0; 0; 0; 0]; %m x 1 array for costs moving across (m - 1) admin scales
+mapParameters.movingAdminCosts = [100000; 200000; 400000; 800000]; %m x 1 array for costs moving across (m - 1) admin scales
 mapParameters.remitAdminCosts = [100 0; 200 0; 400 0; 800 0]; %m x 1 array for costs moving across (m - 1) admin scales
 networkParameters.networkDistanceSD = 7;
 networkParameters.connectionsMean = 2; 
@@ -76,7 +76,6 @@ modelParameters.agePreferencesFile = []; %'./Data/age_specific_params.xls';
 modelParameters.utilityDataPath = './Data';
 modelParameters.saveImg = true;
 modelParameters.shortName = 'Random_map_test';
-modelParameters.runID = [];
 agentParameters.currentID = 1;
 agentParameters.incomeShareFractionMean = 0.303;
 agentParameters.incomeShareFractionSD = 0;
@@ -130,10 +129,9 @@ agentParameters.expectationDecaySD = 0;
 %override any input variables. 'inputs' should be a dataset with two columns,
 %one with the parameter name and one with the value
 if(~isempty(inputs))
-    for indexI = 1:size(inputs,1)
-        currentValue = inputs.parameterValues{indexI};
-        eval([inputs.parameterNames{indexI} ' = currentValue;']);
-    end
+   for indexI = 1:size(inputs,1)
+       eval([inputs.parameterNames{indexI} ' = ' num2str(inputs.parameterValues(indexI)) ';']);
+   end
 end
 
 modelParameters.timeSteps = modelParameters.spinupTime + modelParameters.numCycles * modelParameters.cycleLength;  %in this particular experiment only, there are 204 time steps with data

@@ -21,12 +21,7 @@ function [movingCosts ] = createMovingCosts(locations, distanceMatrix, mapParame
 
 %   Specify something similar for moving costs between any two spots
 
-baseMovingCosts = [100000; ... %same admin2
-    200000; ... %same admin1, different admin2
-    500000; ... %same admin0, different admin1
-    80000000]; %different admin0
-
-baseMovingCosts = baseMovingCosts * 0;
+baseMovingCosts = mapParameters.movingAdminCosts;
 
 %   Note any distance-specific costs
 

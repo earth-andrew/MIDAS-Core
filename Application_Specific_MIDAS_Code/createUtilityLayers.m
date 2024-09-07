@@ -257,3 +257,19 @@ utilityPrereqs = sparse(utilityPrereqs);
 
 %%% OTHER EXAMPLE CODE BELOW HERE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%CODE HERE UPDATES utilityBaseLayers TO SPECIFIC BENCHMARK EXPERIMENTS
+
+switch modelParameters.runID
+
+    case 'D_Dev'
+
+        utilityBaseLayers(locations.AdminUnit1 == 1,:,:) = utilityBaseLayers(locations.AdminUnit1 == 1,:,:) * 1.5;
+        utilityBaseLayers(locations.AdminUnit1 == 2,:,:) = utilityBaseLayers(locations.AdminUnit1 == 2,:,:) * 0.5;
+
+    case 'HUB1'
+        
+        hub_location = randi(size(utilityBaseLayers,1));
+        utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
+end

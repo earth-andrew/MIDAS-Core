@@ -1,4 +1,4 @@
-function [ remittanceFee, remittanceRate ] = createRemittanceCosts(locations, varargin)
+function [ remittanceFee, remittanceRate ] = createRemittanceCosts(locations, mapParameters, varargin)
 %createRemittanceCosts create remittance cost structures for all scales
 %and/or unit pairs in model
 
@@ -17,10 +17,7 @@ function [ remittanceFee, remittanceRate ] = createRemittanceCosts(locations, va
 %   different countries).  Exceptions for specific unit-unit pairs are made
 %   next
 
-baseCosts = [0 0; ... %same admin2
-    0 0; ... %same admin1, different admin2
-    0 0; ... %same admin0, different admin1
-    0 0]; %different admin0
+baseCosts = mapParameters.remitAdminCosts;
 
 
 %in this particular application, let the rate for remittances outside of
