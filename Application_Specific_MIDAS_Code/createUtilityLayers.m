@@ -270,6 +270,11 @@ switch modelParameters.runID
 
     case 'HUB1'
         
-        hub_location = randi(size(utilityBaseLayers,1));
+        hub_location = randperm(size(utilityBaseLayers,1),1);
+        utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
+
+    case 'HUB4'
+        
+        hub_location = randperm(size(utilityBaseLayers,1),4);
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
 end

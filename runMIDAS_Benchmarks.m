@@ -43,6 +43,14 @@ experiment = [experiment;{'modelParameters.runID',  'HUB1'}];
 
 experimentList{end+1} = experiment;
 
+%%%%baseline + multiple hubs
+
+experiment = experiment_table;
+
+experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
+experiment = [experiment;{'modelParameters.runID',  'HUB4'}];
+
+experimentList{end+1} = experiment;
 %%%%%%%baseline + high moving costs
 
 experiment = experiment_table;
@@ -63,7 +71,7 @@ experiment = [experiment;{'agentParameters.rValueMean',  0.2}];
 
 experimentList{end+1} = experiment;
 
-%%%%%%%baseline + high risk aversion
+%%%%%%%baseline + differing development between states
 
 experiment = experiment_table;
 
@@ -72,6 +80,15 @@ experiment = [experiment;{'modelParameters.runID',  'D_Dev'}];
 
 experimentList{end+1} = experiment;
 
+%%%%%%%baseline + C&A
+
+experiment = experiment_table;
+
+experiment = [experiment;{'modelParameters.shortName',  'cap_asp'}];
+experiment = [experiment;{'modelParameters.runID',  'CA'}];
+experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
+
+experimentList{end+1} = experiment;
 %%%%%%%
 
 fprintf(['Saving Experiment List.\n']);
