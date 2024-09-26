@@ -48,8 +48,8 @@ experimentList{end+1} = experiment;
 for indexI = 1:10
     experiment = experiment_table;
     
-    experiment = [experiment;{'modelParameters.shortName',  'PA_level_1'}];
-    experiment = [experiment;{'modelParameters.runID',  'PA1'}];
+    experiment = [experiment;{'modelParameters.shortName',  ['PA_level_' num2str(indexI)]}];
+    experiment = [experiment;{'modelParameters.runID',  ['PA' num2str(indexI)]}];
     
     experiment = [experiment;{'agentParameters.placeAttachmentFlag',  1}];
     experiment = [experiment;{'agentParameters.placeAttachmentMean',  indexI * 0.1}];
