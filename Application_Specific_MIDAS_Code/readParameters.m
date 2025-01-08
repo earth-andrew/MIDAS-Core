@@ -2,13 +2,12 @@ function [agentParameters, modelParameters, networkParameters, mapParameters] = 
 
 %All model parameters go here
 modelParameters.spinupTime = 10;
-modelParameters.numAgents = 500;
 mapParameters.sizeX = 600;
 mapParameters.sizeY = 600;
 mapParameters.levelID = '_PCODE';
 mapParameters.levelName = '_EN';
 modelParameters.cycleLength = 4;
-modelParameters.numCycles = 20;
+modelParameters.numCycles = 25;
 modelParameters.incomeInterval = 1;
 modelParameters.visualizeYN = 0;
 modelParameters.listTimeStepYN = 1;
@@ -36,6 +35,9 @@ modelParameters.educationLayer = 6; %Need to denote which layer is education, as
 %Aspirations Flag
 modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirations
 
+%Place attachment Flag 
+modelParameters.placeAttachmentFlag = 1; %0 for no PA; 1 for PA
+
 modelParameters.remitRate = 0;
 modelParameters.creditMultiplier = 0.3;
 modelParameters.normalFloodMultiplier = 1;
@@ -61,18 +63,18 @@ mapParameters.degToRad = 0.0174533;
 mapParameters.milesPerDeg = 69; %use for estimating actual distances in distance Matrix
 mapParameters.density = 60; %pixels per degree Lat/Long, if using .shp input
 mapParameters.colorSpacing = 20;
-mapParameters.numDivisionMean = [2 3 3];
+mapParameters.numDivisionMean = [2 8 9];
 mapParameters.numDivisionSD = [0 2 1];
 mapParameters.position = [300 100 600 600];
 modelParameters.samplePortfolios = 100; %Number of example portfolios to create average utility for each aspirational layer
 mapParameters.r1 = []; %this will be the spatial reference if we are pulling from a shape file
 mapParameters.saveDirectory = './Outputs/';
 
-mapParameters.filePath = []; %'./Data/Senegal Boundary Files Admin 2/Admin_2_Senegal.shp';
+mapParameters.filePath = []; 
 modelParameters.popFile = [];
 modelParameters.survivalFile = [];
 modelParameters.fertilityFile = [];
-modelParameters.agePreferencesFile = []; %'./Data/age_specific_params.xls';
+modelParameters.agePreferencesFile = './Data/age_specific_params.xls';
 modelParameters.utilityDataPath = './Data';
 modelParameters.saveImg = true;
 modelParameters.shortName = 'Random_map_test';
@@ -126,6 +128,17 @@ agentParameters.uninformedMaxExpectedProbJoinLayerMean = 0.4;
 agentParameters.uninformedMaxExpectedProbJoinLayerSD = 0;
 agentParameters.expectationDecayMean = 0.1;
 agentParameters.expectationDecaySD = 0;
+
+%agent parameters for place attachment
+agentParameters.placeAttachmentMean = 0.3;
+agentParameters.placeAttachmentSD = 0.2;
+agentParameters.placeAttachmentGrowMean = 0.01;
+agentParameters.placeAttachmentGrowSD = 0;
+agentParameters.placeAttachmentDecayMean = 0.001;
+agentParameters.placeAttachmentDecaySD = 0;
+agentParameters.initialPlaceAttachmentMean = 0.5;
+agentParameters.initialPlaceAttachmentSD = 0;
+
 
 %override any input variables. 'inputs' should be a dataset with two columns,
 %one with the parameter name and one with the value
