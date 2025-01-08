@@ -412,6 +412,7 @@ tempAspirationHistory = cell(length(agentList),1);
 tempBackCastProportion = cell(length(agentList),1);
 tempWealthHistory = cell(length(agentList),1);
 tempIncomeHistory = cell(length(agentList),1);
+tempLocationHistory = cell(length(agentList),1);
 tempNetwork = cell(length(agentList),1);
 tempMove = cell(length(agentList),1);
 tempAccess = cell(length(agentList),1);
@@ -431,6 +432,7 @@ for indexI = 1:length(agentList)
     tempExperience{indexI} = agentList(indexI).experience;
     tempWealthHistory{indexI} = agentList(indexI).wealthHistory;
     tempIncomeHistory{indexI} = agentList(indexI).incomeHistory;
+    tempLocationHistory{indexI} = agentList(indexI).location;
     tempDiploma{indexI} = agentList(indexI).diploma;
     try
     tempNetwork{indexI} = [agentList(indexI).network(:).id];
@@ -453,6 +455,7 @@ agentSummary.training = tempTraining;
 agentSummary.experience = tempExperience;
 agentSummary.wealthHistory = tempWealthHistory;
 agentSummary.incomeHistory = tempIncomeHistory;
+agentSummary.locationHistory = tempLocationHistory;
 agentSummary.diploma = tempDiploma;
 
 outputs.agentSummary = agentSummary;

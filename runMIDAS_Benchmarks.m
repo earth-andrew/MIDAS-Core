@@ -27,68 +27,81 @@ experiment_table = table([],[],'VariableNames',{'parameterNames','parameterValue
 
 %%%%baseline
 
-experiment = experiment_table;
+for indexI = 1:00
+    experiment = experiment_table;
 
-experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
-experiment = [experiment;{'modelParameters.runID',  'B'}];
+    experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
+    experiment = [experiment;{'modelParameters.runID',  'B'}];
 
-experimentList{end+1} = experiment;
+    experimentList{end+1} = experiment;
 
+end
 %%%%baseline + one hub
 
-experiment = experiment_table;
-
-experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
-experiment = [experiment;{'modelParameters.runID',  'HUB1'}];
-
-experimentList{end+1} = experiment;
-
+for indexI = 1:00
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
+    experiment = [experiment;{'modelParameters.runID',  'HUB1'}];
+    
+    experimentList{end+1} = experiment;
+end
 %%%%baseline + multiple hubs
 
-experiment = experiment_table;
-
-experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
-experiment = [experiment;{'modelParameters.runID',  'HUB4'}];
-
-experimentList{end+1} = experiment;
+for indexI = 1:00
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
+    experiment = [experiment;{'modelParameters.runID',  'HUB4'}];
+    
+    experimentList{end+1} = experiment;
+end
 %%%%%%%baseline + high moving costs
 
-experiment = experiment_table;
-
-experiment = [experiment;{'modelParameters.shortName',  'baseline_high_moving'}];
-experiment = [experiment;{'modelParameters.runID',  'B_HM'}];
-experiment = [experiment;{'mapParameters.movingAdminCosts',  [1000; 2000; 4000; 8000]}];
-
-experimentList{end+1} = experiment;
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'baseline_high_moving'}];
+    experiment = [experiment;{'modelParameters.runID',  'B_HM'}];
+    experiment = [experiment;{'mapParameters.movingCostPerMile', 0.0500 * rand()}];
+    
+    experimentList{end+1} = experiment;
+end
 
 %%%%%%%baseline + high risk aversion
 
-experiment = experiment_table;
-
-experiment = [experiment;{'modelParameters.shortName',  'baseline_high_risk_aversion'}];
-experiment = [experiment;{'modelParameters.runID',  'B_HR'}];
-experiment = [experiment;{'agentParameters.rValueMean',  0.2}];
-
-experimentList{end+1} = experiment;
+for indexI = 1:00
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'baseline_high_risk_aversion'}];
+    experiment = [experiment;{'modelParameters.runID',  'B_HR'}];
+    experiment = [experiment;{'agentParameters.rValueMean',  rand()}];
+    
+    experimentList{end+1} = experiment;
+end
 
 %%%%%%%baseline + differing development between states
 
-experiment = experiment_table;
-
-experiment = [experiment;{'modelParameters.shortName',  'different_development'}];
-experiment = [experiment;{'modelParameters.runID',  'D_Dev'}];
-
-experimentList{end+1} = experiment;
+for indexI = 1:00
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'different_development'}];
+    experiment = [experiment;{'modelParameters.runID',  'D_Dev'}];
+    
+    experimentList{end+1} = experiment;
+end
 
 %%%%%%%baseline + C&A
 
-experiment = experiment_table;
-
-experiment = [experiment;{'modelParameters.shortName',  'cap_asp'}];
-experiment = [experiment;{'modelParameters.runID',  'CA'}];
-experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
-
-experimentList{end+1} = experiment;
+for indexI = 1:00
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'cap_asp'}];
+    experiment = [experiment;{'modelParameters.runID',  'CA'}];
+    experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
+    
+    experimentList{end+1} = experiment;
+end
 %%%%%%%
 
 fprintf(['Saving Experiment List.\n']);
@@ -96,8 +109,8 @@ save([saveDirectory 'benchmarks_' date '_input_summary'], 'experimentList');
 
 runList = zeros(length(experimentList),1);
 %run the model
-%parfor indexI = 1:length(experimentList)
-for indexI = 1:length(experimentList)
+parfor indexI = 1:length(experimentList)
+%for indexI = 1:length(experimentList)
     if(runList(indexI) == 0)
         input = experimentList{indexI};
         

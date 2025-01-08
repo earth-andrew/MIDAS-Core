@@ -2,15 +2,15 @@ function [agentParameters, modelParameters, networkParameters, mapParameters] = 
 
 %All model parameters go here
 modelParameters.spinupTime = 10;
-modelParameters.numAgents = 100;
+modelParameters.numAgents = 500;
 mapParameters.sizeX = 600;
 mapParameters.sizeY = 600;
 mapParameters.levelID = '_PCODE';
 mapParameters.levelName = '_EN';
 modelParameters.cycleLength = 4;
-modelParameters.numCycles = 1;
+modelParameters.numCycles = 20;
 modelParameters.incomeInterval = 1;
-modelParameters.visualizeYN = 1;
+modelParameters.visualizeYN = 0;
 modelParameters.listTimeStepYN = 1;
 modelParameters.visualizeInterval = 2;
 modelParameters.showMovesOrNetwork = 1; %1 for recent moves, 0 for network
@@ -61,7 +61,7 @@ mapParameters.degToRad = 0.0174533;
 mapParameters.milesPerDeg = 69; %use for estimating actual distances in distance Matrix
 mapParameters.density = 60; %pixels per degree Lat/Long, if using .shp input
 mapParameters.colorSpacing = 20;
-mapParameters.numDivisionMean = [2 8 9];
+mapParameters.numDivisionMean = [2 3 3];
 mapParameters.numDivisionSD = [0 2 1];
 mapParameters.position = [300 100 600 600];
 modelParameters.samplePortfolios = 100; %Number of example portfolios to create average utility for each aspirational layer
