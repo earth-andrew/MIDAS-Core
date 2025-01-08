@@ -468,16 +468,9 @@ for indexL = 1:length(locationList)
     
     end
 
+    %scale this value by place attachment
+
     agent.bestPortfolioValues(locationList(indexL)) = locationValue(indexL);
-
-    %scale this value by place attachment.  this affects ONLY the current
-    %comparison of different places; the unscaled value is stored above.
-    %thus the effect of place attachment will always be relative and matter
-    %at the point of decision-making
-
-    if(modelParameters.placeAttachmentFlag == 1)
-        locationValue(indexL) = locationValue(indexL) * agent.currentPAScaler(locationList(indexL));
-    end
 end
 agent.consideredPortfolios = consideredPortfolioSet;
 
