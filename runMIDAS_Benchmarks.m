@@ -27,7 +27,7 @@ experiment_table = table([],[],'VariableNames',{'parameterNames','parameterValue
 
 %%%%baseline
 
-for indexI = 1:00
+for indexI = 1:100
     experiment = experiment_table;
 
     experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
@@ -38,7 +38,7 @@ for indexI = 1:00
 end
 %%%%baseline + one hub
 
-for indexI = 1:00
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
@@ -48,7 +48,7 @@ for indexI = 1:00
 end
 %%%%baseline + multiple hubs
 
-for indexI = 1:00
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
@@ -61,8 +61,8 @@ end
 for indexI = 1:100
     experiment = experiment_table;
     
-    experiment = [experiment;{'modelParameters.shortName',  'baseline_high_moving'}];
-    experiment = [experiment;{'modelParameters.runID',  'B_HM'}];
+    experiment = [experiment;{'modelParameters.shortName',  'varying_moving_costs'}];
+    experiment = [experiment;{'modelParameters.runID',  'VHM'}];
     experiment = [experiment;{'mapParameters.movingCostPerMile', 0.0100 * rand()}];
     
     experimentList{end+1} = experiment;
@@ -73,8 +73,8 @@ end
 for indexI = 1:100
     experiment = experiment_table;
     
-    experiment = [experiment;{'modelParameters.shortName',  'baseline_place_attachment'}];
-    experiment = [experiment;{'modelParameters.runID',  'B_PA'}];
+    experiment = [experiment;{'modelParameters.shortName',  'varying_place_attachment'}];
+    experiment = [experiment;{'modelParameters.runID',  'VPA'}];
     experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
     experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
     
@@ -83,11 +83,11 @@ end
 
 %%%%%%%baseline + high risk aversion
 
-for indexI = 1:00
+for indexI = 1:100
     experiment = experiment_table;
     
-    experiment = [experiment;{'modelParameters.shortName',  'baseline_high_risk_aversion'}];
-    experiment = [experiment;{'modelParameters.runID',  'B_HR'}];
+    experiment = [experiment;{'modelParameters.shortName',  'varying_risk_aversion'}];
+    experiment = [experiment;{'modelParameters.runID',  'VHR'}];
     experiment = [experiment;{'agentParameters.rValueMean',  rand()}];
     
     experimentList{end+1} = experiment;
@@ -95,7 +95,7 @@ end
 
 %%%%%%%baseline + differing development between states
 
-for indexI = 1:00
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'different_development'}];
@@ -106,7 +106,7 @@ end
 
 %%%%%%%baseline + C&A
 
-for indexI = 1:00
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'cap_asp'}];
