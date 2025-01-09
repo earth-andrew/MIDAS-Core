@@ -155,16 +155,30 @@ end
 %marginal increase moving from one quartile to the next.  for assets, these
 %values are place-specific.  for qualifications, average the costs over the
 %appropriate domain
-utilityAccessCosts = [ ...
-    1 modelParameters.smallFarmCost; %cost of buying small farm %original 1000
-    2 modelParameters.largeFarmCost; %cost of growing to a large farm %original 4000
-    6 modelParameters.educationCost; %cost of going to school %original 5000
-    ];
+
+%in this particular example, farming and school cost money to buy into, AND
+%are place specific.  Thus, there is a unique access code for each of
+%these, for each place
+
+utilityAccessCosts = [];
+
+for indexK = 1:size(locations,1)
+
+    utilityAccessCosts = [utilityAccessCosts; ...
+        (indexK - 1)*3 + 1 modelParameters.smallFarmCost; %cost of buying small farm %original 1000
+        (indexK - 1)*3 + 2 modelParameters.largeFarmCost; %cost of growing to a large farm %original 4000
+        (indexK - 1)*3 + 3 modelParameters.educationCost; %cost of going to school %original 5000
+        ];
+end
 
 utilityAccessCodesMat = zeros(size(utilityAccessCosts,1), size(mean_utility_by_layer,1), size(locations,1));
-utilityAccessCodesMat(1,4,:) = 1;
-utilityAccessCodesMat(2,5,:) = 1;
-utilityAccessCodesMat(3,6,:) = 1;
+
+for indexK = 1:size(locations,1)
+    utilityAccessCodesMat((indexK - 1) * 3 + 1,4,indexK) = 1;
+    utilityAccessCodesMat((indexK - 1) * 3 + 2,5,indexK) = 1;
+    utilityAccessCodesMat((indexK - 1) * 3 + 3,6,indexK) = 1;
+
+end
 
 %%%%%%%%%%%%%%%%%
 %nExpected

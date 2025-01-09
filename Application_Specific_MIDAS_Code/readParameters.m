@@ -2,13 +2,13 @@ function [agentParameters, modelParameters, networkParameters, mapParameters] = 
 
 %All model parameters go here
 modelParameters.spinupTime = 10;
-modelParameters.numAgents = 2000;
+modelParameters.numAgents = 500;
 mapParameters.sizeX = 600;
 mapParameters.sizeY = 600;
 mapParameters.levelID = '_PCODE';
 mapParameters.levelName = '_EN';
 modelParameters.cycleLength = 4;
-modelParameters.numCycles = 25;
+modelParameters.numCycles = 20;
 modelParameters.incomeInterval = 1;
 modelParameters.visualizeYN = 0;
 modelParameters.listTimeStepYN = 1;
@@ -37,7 +37,7 @@ modelParameters.educationLayer = 6; %Need to denote which layer is education, as
 modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirations
 
 %Place attachment Flag 
-modelParameters.placeAttachmentFlag = 1; %0 for no PA; 1 for PA
+modelParameters.placeAttachmentFlag = 0; %0 for no PA; 1 for PA
 
 modelParameters.remitRate = 0;
 modelParameters.creditMultiplier = 0.3;
@@ -75,7 +75,7 @@ mapParameters.filePath = [];
 modelParameters.popFile = [];
 modelParameters.survivalFile = [];
 modelParameters.fertilityFile = [];
-modelParameters.agePreferencesFile = './Data/age_specific_params.xls';
+modelParameters.agePreferencesFile = []; './Data/age_specific_params.xls';
 modelParameters.utilityDataPath = './Data';
 modelParameters.saveImg = true;
 modelParameters.shortName = 'Random_map_test';

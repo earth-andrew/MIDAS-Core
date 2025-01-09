@@ -63,7 +63,20 @@ for indexI = 1:100
     
     experiment = [experiment;{'modelParameters.shortName',  'baseline_high_moving'}];
     experiment = [experiment;{'modelParameters.runID',  'B_HM'}];
-    experiment = [experiment;{'mapParameters.movingCostPerMile', 0.0500 * rand()}];
+    experiment = [experiment;{'mapParameters.movingCostPerMile', 0.0100 * rand()}];
+    
+    experimentList{end+1} = experiment;
+end
+
+%%%%%%%baseline + place attachment
+
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'baseline_place_attachment'}];
+    experiment = [experiment;{'modelParameters.runID',  'B_PA'}];
+    experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
+    experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
     
     experimentList{end+1} = experiment;
 end
@@ -103,6 +116,8 @@ for indexI = 1:00
     experimentList{end+1} = experiment;
 end
 %%%%%%%
+
+experimentList = experimentList(randperm(length(experimentList)));
 
 fprintf(['Saving Experiment List.\n']);
 save([saveDirectory 'benchmarks_' date '_input_summary'], 'experimentList');
