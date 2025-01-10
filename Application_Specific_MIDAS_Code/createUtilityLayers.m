@@ -91,11 +91,11 @@ localOnly = [0; ... %unskilled 1
 ];
 
 timeQs =[0.5 0.5 0.5 0.5; ... %unskilled 1
-    0.5 0.5 0.5 0.5; ... %unskilled 2
+    0.49 0.49 0.49 0.49; ... %unskilled 2
     0.5 0.5 0.5 0.5; ... %skilled (initially 0.75)
     0.0 0.5 0.5 0; ... %ag 1 
-    0.0 0.5 0.5 0; ... %ag 2 (initially 0.1)
-    0.75 0.75 0.75 0.75; ... %school
+    0.0 0.49 0.49 0; ... %ag 2 (initially 0.1)
+    0.49 0.49 0.49 0.49; ... %school
 ];
 
 incomeQs =[1 1 1 1; ... %unskilled 1
@@ -209,8 +209,8 @@ nExpected(:,5) = floor(numAgentsModel * 0.2);
 nExpected(:,6) = floor(numAgentsModel * 0.1);
 
 hardSlotCountYN = false(size(nExpected));
-hardSlotCountYN(:,3) = false;  %skilled labor opportunities represent fixed job opportunities
-hardSlotCountYN(:,6) = false;  %schools have fixed numbers of seats available
+hardSlotCountYN(:,3) = true;  %skilled labor opportunities represent fixed job opportunities
+hardSlotCountYN(:,6) = true;  %schools have fixed numbers of seats available
 
 %utility layers may be income, use value, etc.  identify what form of
 %utility it is, so that they get added and weighted appropriately in
