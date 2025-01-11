@@ -2,13 +2,13 @@ function [agentParameters, modelParameters, networkParameters, mapParameters] = 
 
 %All model parameters go here
 modelParameters.spinupTime = 10;
-modelParameters.numAgents = 500;
+modelParameters.numAgents = 2000;
 mapParameters.sizeX = 600;
 mapParameters.sizeY = 600;
 mapParameters.levelID = '_PCODE';
 mapParameters.levelName = '_EN';
 modelParameters.cycleLength = 4;
-modelParameters.numCycles = 20;
+modelParameters.numCycles = 25;
 modelParameters.incomeInterval = 1;
 modelParameters.visualizeYN = 0;
 modelParameters.listTimeStepYN = 1;
@@ -37,17 +37,15 @@ modelParameters.educationLayer = 6; %Need to denote which layer is education, as
 modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirations
 
 %Place attachment Flag 
-modelParameters.placeAttachmentFlag = 0; %0 for no PA; 1 for PA
+modelParameters.placeAttachmentFlag = 1; %0 for no PA; 1 for PA
 
 modelParameters.remitRate = 0;
 modelParameters.creditMultiplier = 0.3;
 modelParameters.normalFloodMultiplier = 1;
-modelParameters.ruralUrbanTime = 0; %.2; %Round 1: 0.15; %Proportion of time needed for transit between rural and urban layers of portfolio
+modelParameters.ruralUrbanTime = 0.2; %Round 1: 0.15; %Proportion of time needed for transit between rural and urban layers of portfolio
 mapParameters.movingCostPerMile = 0; %Round 1: 5725
 mapParameters.minDistForCost = 50;
 mapParameters.maxDistForCost = 400;
-mapParameters.movingAdminCosts = [0; 0; 0; 0]; %m x 1 array for costs moving across (m - 1) admin scales
-mapParameters.remitAdminCosts = [100 0; 200 0; 400 0; 800 0]; %m x 1 array for costs moving across (m - 1) admin scales
 networkParameters.networkDistanceSD = 7;
 networkParameters.connectionsMean = 2; 
 networkParameters.connectionsSD = 2;
@@ -75,13 +73,10 @@ mapParameters.filePath = [];
 modelParameters.popFile = [];
 modelParameters.survivalFile = [];
 modelParameters.fertilityFile = [];
-modelParameters.randDeath = 300; %divisor for random death rate ... rand() / randDeath (in absence of mortality data)
-modelParameters.randBirth = 8; %divisor for random birth rate ... rand() / randBirth (in absence of fertility data)
-modelParameters.agePreferencesFile = []; './Data/age_specific_params.xls';
+modelParameters.agePreferencesFile = './Data/age_specific_params.xls';
 modelParameters.utilityDataPath = './Data';
 modelParameters.saveImg = true;
 modelParameters.shortName = 'Random_map_test';
-modelParameters.runID = [];
 agentParameters.currentID = 1;
 agentParameters.incomeShareFractionMean = 0.303;
 agentParameters.incomeShareFractionSD = 0;
