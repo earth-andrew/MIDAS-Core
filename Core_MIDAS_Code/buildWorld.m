@@ -8,7 +8,7 @@ else
 end
 
 %define remittance costs based on these locations
-[remittanceFee, remittanceRate ] = createRemittanceCosts(locations, mapParameters, modelParameters.remitRate);
+[remittanceFee, remittanceRate ] = createRemittanceCosts(locations, modelParameters.remitRate);
 
 %establish population density and likelihood of agent locations
 [locationLikelihood, genderLikelihood, ageLikelihood, survivalRate, fertilityRate, ageDiscountRateFactor, agePointsPopulation, agePointsSurvival, agePointsFertility, agePointsPref] = buildDemography(modelParameters, locations);
@@ -156,6 +156,9 @@ end
 %create the set of moving costs, now that we have a distance matrix made
 [movingCosts ] = createMovingCosts(locations, distanceMatrix, mapParameters);
 
+%scale the distanceMatrix to range from 0 to 1, used in the place
+%attachment module
+distanceMatrix_scaled = distanceMatrix / (max(max(distanceMatrix)));
 
 %package everything up
 
@@ -164,6 +167,7 @@ mapVariables.locations = locations;
 mapVariables.borders = borders;
 mapVariables.network = network;
 mapVariables.distanceMatrix = distanceMatrix;
+mapVariables.distanceMatrix_scaled = distanceMatrix_scaled;
 mapVariables.remittanceFee = remittanceFee;
 mapVariables.remittanceRate = remittanceRate;
 mapVariables.movingCosts = movingCosts;

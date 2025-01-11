@@ -26,6 +26,12 @@ pGetLayer_informed = min(1,max(0,agentParameters.informedExpectedProbJoinLayerMe
 pGetLayer_uninformed = min(1,max(0,agentParameters.uninformedMaxExpectedProbJoinLayerMean + randn() * agentParameters.uninformedMaxExpectedProbJoinLayerSD));
 fDecay = min(1,max(0,agentParameters.expectationDecayMean + randn() * agentParameters.expectationDecaySD));
 
+placeAttachment = min(1,max(0,agentParameters.placeAttachmentMean + randn() * agentParameters.placeAttachmentSD));
+placeAttachmentGrow = min(1,max(0,agentParameters.placeAttachmentGrowMean + randn() * agentParameters.placeAttachmentGrowSD));
+placeAttachmentDecay = min(1,max(0,agentParameters.placeAttachmentDecayMean + randn() * agentParameters.placeAttachmentDecaySD));
+initialPlaceAttachment = min(1,max(0,agentParameters.initialPlaceAttachmentMean + randn() * agentParameters.initialPlaceAttachmentSD));
+
+
 %bList has elements corresponding to each kind of utility layer present
 bList = max(0, agentParameters.bListMean + randn(utilityVariables.numForms,1) * agentParameters.bListSD);
 
@@ -56,6 +62,11 @@ newAgent.wealthHistory = cell(size(modelParameters.timeSteps,1));
 newAgent.realizedUtility = 0;
 newAgent.numBestLocation = numBestLocation;
 newAgent.numBestPortfolio = numBestPortfolio;
+newAgent.placeAttachment = placeAttachment; %agent-specific place attachment 'ness'
+newAgent.placeAttachmentGrow = placeAttachmentGrow; %agent-specific place attachment growth rate
+newAgent.placeAttachmentDecay = placeAttachmentDecay; %agent-specific place attachment decay rate
+newAgent.currentPlaceAttachment = initialPlaceAttachment * ones(size(utilityVariables.utilityBaseLayers,1),1); %attachment to each place
+newAgent.currentPAScaler = zeros(size(utilityVariables.utilityBaseLayers,1),1); %scaled utility by place, based on PA
 
 newAgent.numRandomLocation = numRandomLocation;
 newAgent.numRandomPortfolio = numRandomPortfolio;

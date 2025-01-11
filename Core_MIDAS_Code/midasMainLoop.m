@@ -47,6 +47,7 @@ for indexT = 1:modelParameters.timeSteps
 
     %Update average utilities for aspirational portfolios
     utilityVariables.aspirations = aspirationalPortfolio(utilityVariables.utilityBaseLayers(:,:,indexT), modelParameters.samplePortfolios, utilityVariables.utilityPrereqs, utilityVariables.utilityTimeConstraints);
+        
     %update agent age, information and preferences, looping across agents
     for indexA = 1:length(currentRandOrder)        
         currentAgent = livingAgents(currentRandOrder(indexA));
@@ -87,6 +88,9 @@ for indexT = 1:modelParameters.timeSteps
         currentAgent.heardOpening(currentAgent.matrixLocation,currentPortfolio) = utilityVariables.hasOpenSlots(currentAgent.matrixLocation,currentPortfolio);
         currentAgent.timeProbOpeningUpdated(currentAgent.matrixLocation,currentPortfolio) = indexT;
  
+        %Update place attachment for all places for this agent
+        currentAgent = updatePlaceAttachment(currentAgent, mapVariables.distanceMatrix_scaled);
+
         %draw number to see if (for female agents) agent gives birth
         if(currentAgent.gender == 2 && currentAgent.age >= modelParameters.ageDecision)
             agentGivesBirth = rand() < interp1(demographicVariables.agePointsFertility, demographicVariables.fertilityRate(currentAgent.matrixLocation,:), currentAgent.age);
@@ -223,6 +227,8 @@ for indexT = 1:modelParameters.timeSteps
 
         if(rand() < currentAgent.pChoose && indexT > modelParameters.spinupTime && currentAgent.age >= modelParameters.ageDecision)
             [currentAgent, moved] = choosePortfolio(currentAgent, utilityVariables, indexT, modelParameters, mapParameters, demographicVariables, mapVariables);
+
+            %fprintf(['Agent ' num2str(indexA) ' considered options.\n']);
             currentAgent.agentPortfolioHistory{indexT} = currentAgent.currentPortfolio;
             currentAgent.agentAspirationHistory{indexT} = currentAgent.currentAspiration;
             currentAgent.consideredHistory{indexT} = currentAgent.consideredPortfolios;
@@ -412,7 +418,6 @@ tempAspirationHistory = cell(length(agentList),1);
 tempBackCastProportion = cell(length(agentList),1);
 tempWealthHistory = cell(length(agentList),1);
 tempIncomeHistory = cell(length(agentList),1);
-tempLocationHistory = cell(length(agentList),1);
 tempNetwork = cell(length(agentList),1);
 tempMove = cell(length(agentList),1);
 tempAccess = cell(length(agentList),1);
@@ -432,7 +437,6 @@ for indexI = 1:length(agentList)
     tempExperience{indexI} = agentList(indexI).experience;
     tempWealthHistory{indexI} = agentList(indexI).wealthHistory;
     tempIncomeHistory{indexI} = agentList(indexI).incomeHistory;
-    tempLocationHistory{indexI} = agentList(indexI).location;
     tempDiploma{indexI} = agentList(indexI).diploma;
     try
     tempNetwork{indexI} = [agentList(indexI).network(:).id];
@@ -455,7 +459,6 @@ agentSummary.training = tempTraining;
 agentSummary.experience = tempExperience;
 agentSummary.wealthHistory = tempWealthHistory;
 agentSummary.incomeHistory = tempIncomeHistory;
-agentSummary.locationHistory = tempLocationHistory;
 agentSummary.diploma = tempDiploma;
 
 outputs.agentSummary = agentSummary;
