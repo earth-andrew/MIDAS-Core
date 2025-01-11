@@ -27,7 +27,7 @@ experiment_table = table([],[],'VariableNames',{'parameterNames','parameterValue
 
 %%%%baseline
 
-for indexI = 1:100
+for indexI = 1:00
     experiment = experiment_table;
 
     experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
@@ -38,7 +38,7 @@ for indexI = 1:100
 end
 %%%%baseline + one hub
 
-for indexI = 1:100
+for indexI = 1:00
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
@@ -48,7 +48,7 @@ for indexI = 1:100
 end
 %%%%baseline + multiple hubs
 
-for indexI = 1:100
+for indexI = 1:00
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
@@ -58,7 +58,7 @@ for indexI = 1:100
 end
 %%%%%%%baseline + high moving costs
 
-for indexI = 1:100
+for indexI = 1:00
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'varying_moving_costs'}];
@@ -83,7 +83,7 @@ end
 
 %%%%%%%baseline + high risk aversion
 
-for indexI = 1:100
+for indexI = 1:00
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'varying_risk_aversion'}];
@@ -95,7 +95,7 @@ end
 
 %%%%%%%baseline + differing development between states
 
-for indexI = 1:100
+for indexI = 1:00
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'different_development'}];
@@ -106,7 +106,7 @@ end
 
 %%%%%%%baseline + C&A
 
-for indexI = 1:100
+for indexI = 1:00
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'cap_asp'}];
@@ -124,7 +124,7 @@ save([saveDirectory 'benchmarks_' date '_input_summary'], 'experimentList');
 
 runList = zeros(length(experimentList),1);
 %run the model
-parfor indexI = 1:length(experimentList)
+for indexI = 1:length(experimentList)
 %for indexI = 1:length(experimentList)
     if(runList(indexI) == 0)
         input = experimentList{indexI};

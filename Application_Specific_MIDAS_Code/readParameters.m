@@ -2,13 +2,13 @@ function [agentParameters, modelParameters, networkParameters, mapParameters] = 
 
 %All model parameters go here
 modelParameters.spinupTime = 10;
-modelParameters.numAgents = 2000;
+modelParameters.numAgents = 500;
 mapParameters.sizeX = 600;
 mapParameters.sizeY = 600;
 mapParameters.levelID = '_PCODE';
 mapParameters.levelName = '_EN';
 modelParameters.cycleLength = 4;
-modelParameters.numCycles = 25;
+modelParameters.numCycles = 20;
 modelParameters.incomeInterval = 1;
 modelParameters.visualizeYN = 0;
 modelParameters.listTimeStepYN = 1;
@@ -37,15 +37,19 @@ modelParameters.educationLayer = 6; %Need to denote which layer is education, as
 modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirations
 
 %Place attachment Flag 
-modelParameters.placeAttachmentFlag = 1; %0 for no PA; 1 for PA
+modelParameters.placeAttachmentFlag = 0; %0 for no PA; 1 for PA
 
 modelParameters.remitRate = 0;
 modelParameters.creditMultiplier = 0.3;
 modelParameters.normalFloodMultiplier = 1;
-modelParameters.ruralUrbanTime = 0.2; %Round 1: 0.15; %Proportion of time needed for transit between rural and urban layers of portfolio
+modelParameters.ruralUrbanTime = 0; %Round 1: 0.15; %Proportion of time needed for transit between rural and urban layers of portfolio
+modelParameters.randDeath = 250;  %1 / randDeath is probability of death by age bracket
+modelParameters.randBirth = 8;
 mapParameters.movingCostPerMile = 0; %Round 1: 5725
 mapParameters.minDistForCost = 50;
 mapParameters.maxDistForCost = 400;
+mapParameters.movingAdminCosts = [0; 0; 0; 0]; %m x 1 array for costs moving across (m - 1) admin scales
+mapParameters.remitAdminCosts = [100 0; 200 0; 400 0; 800 0]; %m x 1 array for costs moving across (m - 1) admin scales
 networkParameters.networkDistanceSD = 7;
 networkParameters.connectionsMean = 2; 
 networkParameters.connectionsSD = 2;
@@ -62,8 +66,8 @@ mapParameters.degToRad = 0.0174533;
 mapParameters.milesPerDeg = 69; %use for estimating actual distances in distance Matrix
 mapParameters.density = 60; %pixels per degree Lat/Long, if using .shp input
 mapParameters.colorSpacing = 20;
-mapParameters.numDivisionMean = [2 8 9];
-mapParameters.numDivisionSD = [0 2 1];
+mapParameters.numDivisionMean = [2 3 3];
+mapParameters.numDivisionSD = [0 1 1];
 mapParameters.position = [300 100 600 600];
 modelParameters.samplePortfolios = 100; %Number of example portfolios to create average utility for each aspirational layer
 mapParameters.r1 = []; %this will be the spatial reference if we are pulling from a shape file
