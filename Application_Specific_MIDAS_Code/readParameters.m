@@ -8,7 +8,7 @@ mapParameters.sizeY = 600;
 mapParameters.levelID = '_PCODE';
 mapParameters.levelName = '_EN';
 modelParameters.cycleLength = 4;
-modelParameters.numCycles = 20;
+modelParameters.numCycles = 25;
 modelParameters.incomeInterval = 1;
 modelParameters.visualizeYN = 0;
 modelParameters.listTimeStepYN = 1;
@@ -38,6 +38,9 @@ modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirati
 
 %Place attachment Flag 
 modelParameters.placeAttachmentFlag = 0; %0 for no PA; 1 for PA
+
+%Shock experiment Flag
+modelParameters.shockExperiment = 0; %0 for no shock; 1 for shock
 
 modelParameters.remitRate = 0;
 modelParameters.creditMultiplier = 0.3;

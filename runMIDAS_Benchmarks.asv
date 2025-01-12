@@ -27,39 +27,133 @@ experiment_table = table([],[],'VariableNames',{'parameterNames','parameterValue
 
 %%%%baseline
 
-experiment = experiment_table;
+for indexI = 1:100
+    experiment = experiment_table;
 
-experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
+    experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
+    experiment = [experiment;{'modelParameters.runID',  'B'}];
 
-experimentList{end+1} = experiment;
+    experimentList{end+1} = experiment;
 
+end
+%%%%baseline + one hub
+
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
+    experiment = [experiment;{'modelParameters.runID',  'HUB1'}];
+    
+    if rand() < 0.5
+        experiment = [experimeint; {'modelParameters.shockExperiment', 1}];
+    end
+
+    experimentList{end+1} = experiment;
+end
+%%%%baseline + multiple hubs
+
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
+    experiment = [experiment;{'modelParameters.runID',  'HUB4'}];
+
+    if rand() < 0.5
+        experiment = [experimeint; {'modelParameters.shockExperiment', 1}];
+    end
+
+    experimentList{end+1} = experiment;
+end
 %%%%%%%baseline + high moving costs
 
-experiment = experiment_table;
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'varying_moving_costs'}];
+    experiment = [experiment;{'modelParameters.runID',  'VHM'}];
+    experiment = [experiment;{'mapParameters.movingCostPerMile', 0.0100 * rand()}];
 
-experiment = [experiment;{'modelParameters.shortName',  'baseline_high_moving'}];
-experiment = [experiment;{'mapParameters.movingAdminCosts',  [1000; 2000; 4000; 8000]}];
+    if rand() < 0.5
+        experiment = [experimeint; {'modelParameters.shockExperiment', 1}];
+    end
 
-experimentList{end+1} = experiment;
+    experimentList{end+1} = experiment;
+end
+
+%%%%%%%baseline + place attachment
+
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'varying_place_attachment'}];
+    experiment = [experiment;{'modelParameters.runID',  'VPA'}];
+    experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
+    experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
+
+    if rand() < 0.5
+        experiment = [experimeint; {'modelParameters.shockExperiment', 1}];
+    end
+
+    experimentList{end+1} = experiment;
+end
 
 %%%%%%%baseline + high risk aversion
 
-experiment = experiment_table;
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'varying_risk_aversion'}];
+    experiment = [experiment;{'modelParameters.runID',  'VHR'}];
+    experiment = [experiment;{'agentParameters.rValueMean',  rand()}];
 
-experiment = [experiment;{'modelParameters.shortName',  'baseline_high_risk_aversion'}];
-experiment = [experiment;{'agentParameters.rValueMean',  0.2}];
+    if rand() < 0.5
+        experiment = [experimeint; {'modelParameters.shockExperiment', 1}];
+    end
 
-experimentList{end+1} = experiment;
+    experimentList{end+1} = experiment;
+end
 
+%%%%%%%baseline + differing development between states
+
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'different_development'}];
+    experiment = [experiment;{'modelParameters.runID',  'D_Dev'}];
+    
+    if rand() < 0.5
+        experiment = [experimeint; {'modelParameters.shockExperiment', 1}];
+    end
+
+    experimentList{end+1} = experiment;
+end
+
+%%%%%%%baseline + C&A
+
+for indexI = 1:100
+    experiment = experiment_table;
+    
+    experiment = [experiment;{'modelParameters.shortName',  'cap_asp'}];
+    experiment = [experiment;{'modelParameters.runID',  'CA'}];
+    experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
+    
+    if rand() < 0.5
+        experiment = [experimeint; {'modelParameters.shockExperiment', 1}];
+    end
+
+    experimentList{end+1} = experiment;
+end
 %%%%%%%
+
+experimentList = experimentList(randperm(length(experimentList)));
 
 fprintf(['Saving Experiment List.\n']);
 save([saveDirectory 'benchmarks_' date '_input_summary'], 'experimentList');
 
 runList = zeros(length(experimentList),1);
 %run the model
-%parfor indexI = 1:length(experimentList)
-for indexI = 1:length(experimentList)
+parfor indexI = 1:length(experimentList)
+%for indexI = 1:length(experimentList)
     if(runList(indexI) == 0)
         input = experimentList{indexI};
         
