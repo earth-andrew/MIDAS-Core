@@ -33,7 +33,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
     experiment = [experiment;{'modelParameters.runID',  'B'}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
     
 
     experimentList{end+1} = experiment;
@@ -47,7 +47,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
     experiment = [experiment;{'modelParameters.runID',  'HUB1'}];
     
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end
@@ -59,7 +59,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
     experiment = [experiment;{'modelParameters.runID',  'HUB4'}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end
@@ -72,7 +72,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.runID',  'VHM'}];
     experiment = [experiment;{'mapParameters.movingCostPerMile', 0.0100 * rand()}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end
@@ -87,7 +87,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
     experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end
@@ -101,7 +101,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.runID',  'VHR'}];
     experiment = [experiment;{'agentParameters.rValueMean',  rand()}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end
@@ -114,7 +114,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.shortName',  'different_development'}];
     experiment = [experiment;{'modelParameters.runID',  'D_Dev'}];
     
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end
@@ -128,7 +128,7 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.runID',  'CA'}];
     experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
     
-    experiment = [experiment; {'modelParameters.shockExperiment', (randperm(3,1) - 1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end
