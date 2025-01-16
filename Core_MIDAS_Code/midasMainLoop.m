@@ -37,9 +37,6 @@ agentLocations(aliveList) = [agentList(aliveList).matrixLocation];
 
 for indexT = 1:modelParameters.timeSteps
     
-    if indexT == 60
-        f=1;
-    end
     %update the social network links ... cap any that swelled above 1 in
     %the last loop, and allow all to decay to no less than 0
     mapVariables.network(mapVariables.network ~= 0) = min(1,mapVariables.network(mapVariables.network ~= 0));

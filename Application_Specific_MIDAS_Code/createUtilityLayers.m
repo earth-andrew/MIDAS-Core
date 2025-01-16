@@ -139,7 +139,7 @@ end
 %%%%%%%
 %if this is a 'shock' experiment, add the shock (however it's defined)
 switch modelParameters.shockExperiment
-    
+
     case 0
         %don't do anything
 
@@ -149,7 +149,7 @@ switch modelParameters.shockExperiment
         %20 steps)
 
         shockLocations = locations.locationY < 350;
-        utilityBaseLayers(shockLocations,4:5,51:70) = utilityBaseLayers(shockLocations,4:5,51:70) * 0.1;
+        utilityBaseLayers(shockLocations,4:5,31:70) = utilityBaseLayers(shockLocations,4:5,31:70) * 0.1;
 
     case 2
         %in this experiment, a random half of all locations experience an
@@ -157,7 +157,7 @@ switch modelParameters.shockExperiment
         %20 steps)
 
         shockLocations = locations.locationY < 350;
-        utilityBaseLayers(shockLocations,:,51:70) = utilityBaseLayers(shockLocations,:,51:70) * 0.1;
+        utilityBaseLayers(shockLocations,:,31:70) = utilityBaseLayers(shockLocations,:,31:70) * 0.1;
 
 end
 
@@ -313,6 +313,11 @@ switch modelParameters.runID
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
 
     case 'HUB4'
+        
+        hub_location = randperm(size(utilityBaseLayers,1),4);
+        utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
+
+    case 'HUB4_CA'
         
         hub_location = randperm(size(utilityBaseLayers,1),4);
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
