@@ -30,7 +30,9 @@ aspirationHistory = zeros(numLayers, modelParameters.timeSteps);
 
 %create a list of shared layers, for use in choosing new link
 agentLayers = zeros(length(agentList),size(utilityVariables.utilityLayerFunctions,1));
+
 agentLayers(:) = vertcat(agentList.currentPortfolio);
+
 
 agentLocations = ones(1,length(agentList));
 agentLocations(aliveList) = [agentList(aliveList).matrixLocation];

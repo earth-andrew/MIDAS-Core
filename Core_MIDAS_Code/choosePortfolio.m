@@ -153,6 +153,7 @@ for indexL = 1:length(locationList)
                 nextBest(1,1:size(utilityVariables.utilityHistory,2)) = nextBest(1,1:size(utilityVariables.utilityHistory,2));
             end
 
+
             portfolioSet{currentPortfolio} = nextBest;
             currentPortfolio = currentPortfolio + 1;
         end
@@ -464,8 +465,19 @@ for indexL = 1:length(locationList)
             f=1;
         end
         locationValue(indexL) = -Inf;
+
+        %Adjust for the fact that initial portfolios may not have a
+        %duration or flag specified
+        if size(agent.currentPortfolio(1,:),2) == size(utilityVariables.utilityHistory,2)
+            agent.currentPortfolio = [(agent.currentPortfolio .* selectable') agent.numPeriodsEvaluate 1];
+        end
+        
         locationPortfolio{indexL} = agent.currentPortfolio;  
     
+    end
+
+    if size(locationPortfolio{indexL},2) == 6
+        f=1;
     end
 
     agent.bestPortfolioValues(locationList(indexL)) = locationValue(indexL);
@@ -550,7 +562,12 @@ catch
     f=1;
 end
 
+if size(bestPortfolio,2) == 6
+    f=1;
+end
 agent.currentPortfolio = bestPortfolio;
+
+
 
 
 if agent.currentPortfolio(end,end) == 0
@@ -558,6 +575,8 @@ if agent.currentPortfolio(end,end) == 0
 else
     agent.currentAspiration = false(1,size(utilityVariables.utilityHistory,2));
 end
+
+
 
 %Calculate proportion of portfolios generated that were backCasted
 agent.backCastProportion(currentT) = backCastCount / totalPortfoliosCreated;

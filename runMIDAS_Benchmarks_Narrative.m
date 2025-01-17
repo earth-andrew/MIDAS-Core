@@ -112,7 +112,7 @@ for indexI = 1:400
     experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
     experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
     
-    experiment = [experiment;{'modelParameters.visualizeYN', 1}];
+    experiment = [experiment;{'modelParameters.visualizeYN', 0}];
 
     % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
     % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  round(rand() * 20)}];
@@ -140,7 +140,7 @@ for indexI = 1:400
     experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
     experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
     
-    experiment = [experiment;{'modelParameters.visualizeYN', 1}];
+    experiment = [experiment;{'modelParameters.visualizeYN', 0}];
 
     % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
     % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  round(rand() * 20)}];
@@ -160,6 +160,7 @@ experimentList = experimentList(randperm(length(experimentList)));
 fprintf(['Saving Experiment List.\n']);
 save([saveDirectory 'benchmarks_' date '_input_summary'], 'experimentList');
 
+numRuns = length(experimentList);
 runList = zeros(length(experimentList),1);
 %run the model
 parfor indexI = 1:length(experimentList)
@@ -169,7 +170,7 @@ parfor indexI = 1:length(experimentList)
         
         %this next line runs MIDAS using the current experimental
         %parameters
-        output = midasMainLoop(input, ['Experiment Run ' num2str(indexI)]);
+        output = midasMainLoop(input, ['Experiment Run ' num2str(indexI) ' of ' num2str(numRuns)]);
         
         
         functionVersions = inmem('-completenames');

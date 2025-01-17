@@ -321,4 +321,14 @@ switch modelParameters.runID
         
         hub_location = randperm(size(utilityBaseLayers,1),4);
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
+    
+    case 'VRC'
+        
+        hub_location = randperm(size(utilityBaseLayers,1),4);
+        utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
+
+    case 'VRC_CA'
+        
+        hub_location = randperm(size(utilityBaseLayers,1),4);
+        utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
 end

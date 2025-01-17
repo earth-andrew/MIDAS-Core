@@ -48,7 +48,11 @@ if modelParameters.aspirationsFlag == 1
         if any(currentPortfolio)
             %Identify any layers in currentPortfolio that are prereqs for
             %aspiration
+            try
             prereqs = j(i==currentAspiration);
+            catch
+                f=1;
+            end
             prereqs(prereqs == currentAspiration) = [];
             %Figure out time left on any prereqs
             if any(prereqs)
