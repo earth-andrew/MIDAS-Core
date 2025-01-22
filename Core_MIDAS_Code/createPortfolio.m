@@ -84,9 +84,11 @@ if isempty(portfolio)
             end
         end
         
-        if ~any(portfolio)
-            disp('Empty portfolio')
-        end
+        % if ~any(portfolio)
+        %     disp('Empty portfolio');
+        % else
+        %     disp('Not Empty');
+        % end
     end
     
     %Now, if aspirations flag is turned on, check if portfolio has any non-selectable, aspirational elements 
@@ -368,16 +370,16 @@ if isempty(portfolio)
         end
 end
 
-if sum(portfolioSets(:,end-1),1) > numPeriodsEvaluate
-    disp('Error with length of portfolio sets in createPortfolio')
-    testForecast = sum(portfolioSets(:,end-1),1)
-    testForecastPortfolio = portfolioSets
-end
-
-%Test for empty portfolios
-if ~any(portfolioSets(1,1:end-2))
-    test = 'empty portfolio in createPortfolio'
-end
+% if sum(portfolioSets(:,end-1),1) > numPeriodsEvaluate
+%     disp('Error with length of portfolio sets in createPortfolio')
+%     testForecast = sum(portfolioSets(:,end-1),1);
+%     testForecastPortfolio = portfolioSets;
+% end
+% 
+% %Test for empty portfolios
+% if ~any(portfolioSets(1,1:end-2))
+%     test = 'empty portfolio in createPortfolio';
+% end
 
 end
 
