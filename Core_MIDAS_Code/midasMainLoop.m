@@ -383,7 +383,7 @@ end %for indexT = 1:modelParameters.timeSteps
 outputs.averageWealth = averageWealth;
 outputs.countAgentsPerLayer = countAgentsPerLayer;
 outputs.migrations = migrations;
-outputs.locations = mapVariables.locations;
+outputs.mapVariables = mapVariables;
 outputs.inMigrations = inMigrations;
 outputs.outMigrations = outMigrations;
 outputs.migrationMatrix = migrationMatrix;
@@ -392,6 +392,7 @@ outputs.utilityHistory = utilityVariables.utilityHistory;
 outputs.portfolioHistory = portfolioHistory;
 outputs.trappedHistory = trappedHistory;
 outputs.aspirationHistory = aspirationHistory;
+
 
 agentList = agentList(1:agentParameters.currentID-1);
 agentSummary = table([agentList(:).id]','VariableNames',{'id'});
