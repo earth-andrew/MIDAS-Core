@@ -71,14 +71,14 @@ for indexI = 1:100
     experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
     experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 3}]; %randperm(3,1) - 1}];
 
     experimentList{end+1} = experiment;
 end
 
 %%%%baseline + multiple hubs + shocks
 
-for indexI = 1:300
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub_CA'}];
@@ -97,7 +97,7 @@ end
 
 %%%%%%%HUB4 + varying costs and moorings
 
-for indexI = 1:300
+for indexI = 1:0
     experiment = experiment_table;
     
     owningCost = rand() * 150;
@@ -123,7 +123,7 @@ end
 
 %%%%%%%HUB4 + varying costs and moorings
 
-for indexI = 1:300
+for indexI = 1:10
     experiment = experiment_table;
     
     owningCost = rand() * 150;
@@ -144,7 +144,7 @@ for indexI = 1:300
     experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
     experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
 
     experimentList{end+1} = experiment;
 end

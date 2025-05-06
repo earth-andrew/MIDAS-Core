@@ -148,7 +148,7 @@ switch modelParameters.shockExperiment
         %agriculture failure for 5 years in year 11 (e.g., after 50 steps, for
         %20 steps)
 
-        shockLocations = locations.locationY < 350;
+        shockLocations = locations.AdminUnit1 == 1;
         utilityBaseLayers(shockLocations,4:5,31:70) = utilityBaseLayers(shockLocations,4:5,31:70) * 0.1;
 
     case 2
@@ -156,7 +156,7 @@ switch modelParameters.shockExperiment
         %income failure in all sectors for 5 years in year 11 (e.g., after 50 steps, for
         %20 steps)
 
-        shockLocations = locations.locationY < 350;
+        shockLocations = locations.AdminUnit1 == 1;
         utilityBaseLayers(shockLocations,:,31:70) = utilityBaseLayers(shockLocations,:,31:70) * 0.1;
 
 end

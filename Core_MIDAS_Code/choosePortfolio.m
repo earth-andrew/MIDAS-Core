@@ -208,6 +208,7 @@ for indexL = 1:length(locationList)
     fullHistory = utilityVariables.utilityHistory(locationList(indexL),:,1:currentT);
     availableHistory = agent.incomeLayersHistory(locationList(indexL),:,1:currentT);
     fullHistory(~availableHistory) = NaN;
+    fullHistory(:,:,1:max(0, (currentT - agent.numPeriodsMemory))) = NaN;
 
     %make a blank array to hold the estimated time paths for each layer,
     %and reshape our fullHistory array to be the same 2D shape
