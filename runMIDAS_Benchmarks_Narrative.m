@@ -133,7 +133,6 @@ for indexI = 1:300
     experiment = [experiment;{'modelParameters.placeAttachmentFlag',  0}];
     experiment = [experiment;{'agentParameters.placeAttachmentMean', 0 * rand()}];
     experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
-    experiment = [experiment:{'agentParameters.numPeriodsMemoryMean', randperm(3,1) * 5 + 5}]
     experiment = [experiment;{'mapParameters.movingCostsPerMile', 0 * rand() * 0.002}];
     experiment = [experiment;{'modelParameters.largeFarmCost', 0 * owningCost * 2}];
     experiment = [experiment;{'modelParameters.smallFarmCost', 0 * owningCost}];
