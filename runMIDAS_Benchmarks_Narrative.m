@@ -32,7 +32,7 @@ for indexI = 1:100
 
     experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
     experiment = [experiment;{'modelParameters.runID',  'B'}];
-    %experiment = [experiment;{'modelParameters.visualizeYN', 1}];
+    experiment = [experiment;{'modelParameters.visualizeYN', 0}];
    
     experiment = [experiment; {'modelParameters.shockExperiment', 0}];
     
@@ -130,14 +130,14 @@ for indexI = 1:300
     experiment = [experiment;{'modelParameters.shortName',  ['varying_risks_costs_CA_' num2str(indexI) '_']}];
     experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
     experiment = [experiment;{'modelParameters.runID',  'VRC_CA'}];
-    experiment = [experiment;{'modelParameters.placeAttachmentFlag',  0}];
-    experiment = [experiment;{'agentParameters.placeAttachmentMean', 0 * rand()}];
+    experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
+    experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
     experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
-    experiment = [experiment;{'mapParameters.movingCostsPerMile', 0 * rand() * 0.002}];
-    experiment = [experiment;{'modelParameters.largeFarmCost', 0 * owningCost * 2}];
-    experiment = [experiment;{'modelParameters.smallFarmCost', 0 * owningCost}];
+    experiment = [experiment;{'mapParameters.movingCostsPerMile', rand() * 0.002}];
+    experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
+    experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
     
-    experiment = [experiment;{'modelParameters.visualizeYN', 1}];
+    experiment = [experiment;{'modelParameters.visualizeYN', 0}];
 
     experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
     experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
