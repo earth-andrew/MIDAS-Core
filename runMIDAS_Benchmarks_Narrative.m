@@ -27,13 +27,17 @@ experiment_table = table([],[],'VariableNames',{'parameterNames','parameterValue
 
 %%%%baseline
 
-for indexI = 1:100
+for indexI = 1:50
     experiment = experiment_table;
 
     experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
     experiment = [experiment;{'modelParameters.runID',  'B'}];
     experiment = [experiment;{'modelParameters.visualizeYN', 0}];
-   
+
+    % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
+    % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
+
     experiment = [experiment; {'modelParameters.shockExperiment', 0}];
     
 
@@ -42,7 +46,7 @@ for indexI = 1:100
 end
 %%%%baseline + one hub
 
-for indexI = 1:100
+for indexI = 1:50
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
@@ -50,9 +54,9 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.visualizeYN', 0}];
 
 
-    experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
-    experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
-    experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
+    % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
     experiment = [experiment; {'modelParameters.shockExperiment', 0}];
 
@@ -67,18 +71,18 @@ for indexI = 1:100
     experiment = [experiment;{'modelParameters.runID',  'HUB4'}];
     experiment = [experiment;{'modelParameters.visualizeYN', 0}];
 
-    experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
-    experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
-    experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
+    % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
+    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
 
     experimentList{end+1} = experiment;
 end
 
 %%%%baseline + multiple hubs + shocks
 
-for indexI = 1:300
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub_CA'}];
@@ -86,11 +90,11 @@ for indexI = 1:300
     experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
     experiment = [experiment;{'modelParameters.visualizeYN', 0}];
 
-    experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
-    experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
-    experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
+    % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
+    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
 
     experimentList{end+1} = experiment;
 end
@@ -116,7 +120,7 @@ for indexI = 1:300
     experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
     experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
+    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
 
     experimentList{end+1} = experiment;
 end
@@ -143,7 +147,7 @@ for indexI = 1:300
     experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
     experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
+    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
 
     experimentList{end+1} = experiment;
 end
