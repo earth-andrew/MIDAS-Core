@@ -62,9 +62,9 @@ for indexI = 1:50
 
     experimentList{end+1} = experiment;
 end
-%%%%baseline + multiple hubs + shocks
+%%%%baseline + multiple hubs 
 
-for indexI = 1:100
+for indexI = 1:50
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
@@ -75,14 +75,14 @@ for indexI = 1:100
     % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
     % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 0}];
 
     experimentList{end+1} = experiment;
 end
 
 %%%%baseline + multiple hubs + shocks
 
-for indexI = 1:100
+for indexI = 1:50
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub_CA'}];
@@ -94,64 +94,65 @@ for indexI = 1:100
     % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
     % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
+    experiment = [experiment; {'modelParameters.shockExperiment', 0}];
 
     experimentList{end+1} = experiment;
 end
 
-%%%%%%%HUB4 + varying costs and moorings
 
-for indexI = 1:300
+%%%%%%%HUB4 + shocks
+
+for indexI = 1:100
     experiment = experiment_table;
     
     owningCost = rand() * 150;
-    experiment = [experiment;{'modelParameters.shortName',  'varying_risks_costs'}];
-    experiment = [experiment;{'modelParameters.runID',  'VRC'}];
-    experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
-    experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
-    experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
-    experiment = [experiment;{'mapParameters.movingCostsPerMile', rand() * 0.002}];
-    experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
-    experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
-    
-    experiment = [experiment;{'modelParameters.visualizeYN', 0}];
-
-    experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
-    experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
-    experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
-
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
-
-    experimentList{end+1} = experiment;
-end
-
-%%%%%%%HUB4 + varying costs and moorings
-
-for indexI = 1:300
-    experiment = experiment_table;
-    
-    owningCost = rand() * 150;
-    experiment = [experiment;{'modelParameters.shortName',  ['varying_risks_costs_CA_' num2str(indexI) '_']}];
+    experiment = [experiment;{'modelParameters.shortName',  ['shocks_4H_CA' num2str(indexI) '_']}];
     experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
-    experiment = [experiment;{'modelParameters.runID',  'VRC_CA'}];
-    experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
-    experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
-    experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
-    experiment = [experiment;{'mapParameters.movingCostsPerMile', rand() * 0.002}];
-    experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
-    experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
-    
+    experiment = [experiment;{'modelParameters.runID',  'S_4H_CA'}];
+    % experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
+    % experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
+    % experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
+    % experiment = [experiment;{'mapParameters.movingCostsPerMile', rand() * 0.002}];
+    % experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
+    % experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
+    % 
     experiment = [experiment;{'modelParameters.visualizeYN', 0}];
-
-    experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
-    experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
-    experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
+    % 
+    % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
+    % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
+    % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
     experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
 
     experimentList{end+1} = experiment;
 end
 
+%%%%%%%HUB4 + varying costs and moorings
+
+for indexI = 1:200
+    experiment = experiment_table;
+    
+    owningCost = rand() * 150;
+    experiment = [experiment;{'modelParameters.shortName',  ['shocks_4H_VRC_CA' num2str(indexI) '_']}];
+    experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
+    experiment = [experiment;{'modelParameters.runID',  'S_4H_VRC_CA'}];
+    experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
+    experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
+    experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
+    experiment = [experiment;{'mapParameters.movingCostsPerMile', rand() * 0.002}];
+    experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
+    experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
+
+    experiment = [experiment;{'modelParameters.visualizeYN', 0}];
+    
+    experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
+    experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(5,1) * 3 + 4}];
+    experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(5,1) * 3 + 4}];
+
+    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
+
+    experimentList{end+1} = experiment;
+end
 
 %%%%%%%
 

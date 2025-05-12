@@ -149,7 +149,7 @@ switch modelParameters.shockExperiment
         %20 steps)
 
         shockLocations = locations.AdminUnit1 == 1;
-        utilityBaseLayers(shockLocations,4:5,31:70) = utilityBaseLayers(shockLocations,4:5,31:70) * 0.1;
+        utilityBaseLayers(shockLocations,4:5,41:52) = utilityBaseLayers(shockLocations,4:5,41:52) * 0.1;
 
     case 2
         %in this experiment, a random half of all locations experience an
@@ -157,7 +157,7 @@ switch modelParameters.shockExperiment
         %20 steps)
 
         shockLocations = locations.AdminUnit1 == 1;
-        utilityBaseLayers(shockLocations,:,31:70) = utilityBaseLayers(shockLocations,:,31:70) * 0.1;
+        utilityBaseLayers(shockLocations,:,41:52) = utilityBaseLayers(shockLocations,:,41:52) * 0.1;
 
 end
 

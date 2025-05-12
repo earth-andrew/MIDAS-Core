@@ -20,6 +20,7 @@ countAgentsPerLayer = zeros(numLocations, numLayers, modelParameters.timeSteps);
 averageExpectedOpening = countAgentsPerLayer;
 averageWealth = zeros(modelParameters.timeSteps ,1);
 migrations = zeros(modelParameters.timeSteps,1);
+population = zeros(numLocations, modelParameters.timeSteps);
 outMigrations = zeros(numLocations, modelParameters.timeSteps);
 inMigrations = zeros(numLocations, modelParameters.timeSteps);
 migrationMatrix = zeros(numLocations,numLocations,modelParameters.timeSteps);
@@ -376,6 +377,7 @@ for indexT = 1:modelParameters.timeSteps
     %%update portfolioHistory
     for indexJ = 1:numLocations
        portfolioHistory{indexJ, indexT} = {(agentList([agentList.matrixLocation] == indexJ).currentPortfolio)};
+       population(indexJ, indexT) = sum([agentList.matrixLocation] == indexJ);
     end
 end %for indexT = 1:modelParameters.timeSteps
 
@@ -390,6 +392,7 @@ outputs.migrationMatrix = migrationMatrix;
 outputs.averageExpectedOpening = averageExpectedOpening;
 outputs.utilityHistory = utilityVariables.utilityHistory;
 outputs.portfolioHistory = portfolioHistory;
+outputs.population = population
 outputs.trappedHistory = trappedHistory;
 outputs.aspirationHistory = aspirationHistory;
 
