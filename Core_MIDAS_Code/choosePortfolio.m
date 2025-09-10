@@ -401,6 +401,7 @@ for indexL = 1:length(locationList)
         accessCostCodes(agent.accessCodesPaid) = false;
         newCosts = sum(utilityVariables.utilityAccessCosts(accessCostCodes,2));
         
+
         %add these costs to the first element in the time series, and store
         %the list for later (in case we choose this portfolio and need to
         %actually pay them)

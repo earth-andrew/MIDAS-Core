@@ -34,7 +34,7 @@ modelParameters.educationLayer = 6; %Need to denote which layer is education, as
 
 
 %Aspirations Flag
-modelParameters.aspirationsFlag = 0; %0 for no aspirations, 1 to enable aspirations
+modelParameters.aspirationsFlag = 1; %0 for no aspirations, 1 to enable aspirations
 
 %Place attachment Flag 
 modelParameters.placeAttachmentFlag = 0; %0 for no PA; 1 for PA
@@ -84,6 +84,7 @@ modelParameters.agePreferencesFile = './Data/age_specific_params.xls';
 modelParameters.utilityDataPath = './Data';
 modelParameters.saveImg = true;
 modelParameters.shortName = 'Random_map_test';
+modelParameters.runID = 'Random_test';
 agentParameters.currentID = 1;
 agentParameters.incomeShareFractionMean = 0.303;
 agentParameters.incomeShareFractionSD = 0;

@@ -3,6 +3,8 @@ function runMIDAS_Benchmark_SA()
 clear functions
 clear classes
 
+cd /home/rocky/MIDAS-Core;
+
 addpath('./Override_Core_MIDAS_Code');
 addpath('./Application_Specific_MIDAS_Code');
 addpath('./Core_MIDAS_Code');

@@ -27,7 +27,7 @@ currentAgent.currentPlaceAttachment(currentAgent.matrixLocation) = currentPA;
 %1)
 d_i_x_PA = distances * currentAgent.currentPlaceAttachment;
 
-currentAgent.currentPAScaler = currentAgent.placeAttachment * currentAgent.currentPlaceAttachment ./ ...
+currentAgent.currentPAScaler = (1 + currentAgent.placeAttachment * currentAgent.currentPlaceAttachment) ./ ...
     (1 + currentAgent.placeAttachment * d_i_x_PA);
 
 end

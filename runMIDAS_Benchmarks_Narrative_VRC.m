@@ -29,7 +29,7 @@ experiment_table = table([],[],'VariableNames',{'parameterNames','parameterValue
 
 %%%%baseline
 
-for indexI = 1:50
+for indexI = 1:100
     experiment = experiment_table;
 
     experiment = [experiment;{'modelParameters.shortName',  'baseline'}];
@@ -48,7 +48,7 @@ for indexI = 1:50
 end
 %%%%baseline + one hub
 
-for indexI = 1:50
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'one_hub'}];
@@ -66,7 +66,7 @@ for indexI = 1:50
 end
 %%%%baseline + multiple hubs 
 
-for indexI = 1:50
+for indexI = 1:100
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub'}];
@@ -82,9 +82,9 @@ for indexI = 1:50
     experimentList{end+1} = experiment;
 end
 
-%%%%baseline + multiple hubs + shocks
+%%%%4hub CA + shocks
 
-for indexI = 1:50
+for indexI = 1:300
     experiment = experiment_table;
     
     experiment = [experiment;{'modelParameters.shortName',  'four_hub_CA'}];
@@ -96,52 +96,27 @@ for indexI = 1:50
     % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
     % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', 0}];
+    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
 
     experimentList{end+1} = experiment;
 end
 
 
-%%%%%%%HUB4 + shocks
 
-for indexI = 1:100
-    experiment = experiment_table;
-    
-    owningCost = rand() * 150;
-    experiment = [experiment;{'modelParameters.shortName',  ['shocks_4H_CA' num2str(indexI) '_']}];
-    experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
-    experiment = [experiment;{'modelParameters.runID',  'S_4H_CA'}];
-    % experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
-    % experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
-    % experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
-    % experiment = [experiment;{'mapParameters.movingCostsPerMile', rand() * 0.002}];
-    % experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
-    % experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
-    % 
-    experiment = [experiment;{'modelParameters.visualizeYN', 0}];
-    % 
-    % experiment = [experiment;{'agentParameters.discountRateMean',  rand() * 0.2}];
-    % experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(3,1) * 5 + 5}];
-    % experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(3,1) * 5 + 5}];
-
-    experiment = [experiment; {'modelParameters.shockExperiment', randperm(2,1)}];
-
-    experimentList{end+1} = experiment;
-end
 
 %%%%%%%HUB4 + varying costs and moorings
 
-for indexI = 1:200
+for indexI = 1:300
     experiment = experiment_table;
     
-    owningCost = rand() * 150;
+    owningCost = rand() * 1500;
     experiment = [experiment;{'modelParameters.shortName',  ['shocks_4H_VRC_CA' num2str(indexI) '_']}];
     experiment = [experiment;{'modelParameters.aspirationsFlag',  1}];
-    experiment = [experiment;{'modelParameters.runID',  'S_4H_VRC_CA'}];
+    experiment = [experiment;{'modelParameters.runID',  'VRC_CA'}];
     experiment = [experiment;{'modelParameters.placeAttachmentFlag',  1}];
     experiment = [experiment;{'agentParameters.placeAttachmentMean', rand()}];
     experiment = [experiment;{'agentParameters.rValueMean', rand() * 1.5}];
-    experiment = [experiment;{'mapParameters.movingCostsPerMile', rand() * 0.002}];
+    experiment = [experiment;{'mapParameters.movingCostPerMile', rand() * 0.01}];
     experiment = [experiment;{'modelParameters.largeFarmCost', owningCost * 2}];
     experiment = [experiment;{'modelParameters.smallFarmCost', owningCost}];
 
@@ -151,7 +126,7 @@ for indexI = 1:200
     experiment = [experiment;{'agentParameters.numPeriodsEvaluateMean',  randperm(5,1) * 3 + 4}];
     experiment = [experiment;{'agentParameters.numPeriodsMemoryMean',  randperm(5,1) * 3 + 4}];
 
-    experiment = [experiment; {'modelParameters.shockExperiment', 2}];
+    experiment = [experiment; {'modelParameters.shockExperiment', randperm(3,1) - 1}];
 
     experimentList{end+1} = experiment;
 end
@@ -169,7 +144,7 @@ runList = zeros(length(experimentList),1);
 
 setenv('MW_PCT_TRANSPORT_HEARTBEAT_INTERVAL', '100000');
 
-parfor indexI = 1:length(experimentList)
+for indexI = 1:length(experimentList)
 %for indexI = 1:length(experimentList)
     if(runList(indexI) == 0)
         input = experimentList{indexI};
