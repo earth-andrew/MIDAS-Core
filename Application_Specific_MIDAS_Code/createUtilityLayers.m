@@ -116,6 +116,7 @@ utilityDuration = [4 inf; %unskilled 1
 
 quarterShare = incomeQs ./ (sum(incomeQs,2));
 quarterShare(isnan(quarterShare)) = 0;
+quarterShare = (mean_utility_by_layer * ones(1,4)) .* quarterShare;
 
 utilityBaseLayers = ones(size(locations,1),size(utilityLayerFunctions,1),timeSteps);
 
@@ -328,6 +329,11 @@ switch modelParameters.runID
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
 
     case 'VRC_CA'
+        
+        hub_location = randperm(size(utilityBaseLayers,1),4);
+        utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
+
+    case 'VE'
         
         hub_location = randperm(size(utilityBaseLayers,1),4);
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;

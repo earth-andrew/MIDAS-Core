@@ -116,6 +116,7 @@ utilityDuration = [4 inf; %unskilled 1
 
 quarterShare = incomeQs ./ (sum(incomeQs,2));
 quarterShare(isnan(quarterShare)) = 0;
+quarterShare = quarterShare
 
 utilityBaseLayers = ones(size(locations,1),size(utilityLayerFunctions,1),timeSteps);
 
@@ -157,7 +158,7 @@ switch modelParameters.shockExperiment
         %20 steps)
 
         shockLocations = locations.AdminUnit1 == 1;
-        utilityBaseLayers(shockLocations,:,41:52) = utilityBaseLayers(shockLocations,:,41:70) * 0.1;
+        utilityBaseLayers(shockLocations,:,41:52) = utilityBaseLayers(shockLocations,:,41:52) * 0.1;
 
 end
 
@@ -328,6 +329,11 @@ switch modelParameters.runID
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
 
     case 'VRC_CA'
+        
+        hub_location = randperm(size(utilityBaseLayers,1),4);
+        utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;
+
+    case 'VE'
         
         hub_location = randperm(size(utilityBaseLayers,1),4);
         utilityBaseLayers(hub_location,:,:) = utilityBaseLayers(hub_location,:,:) * 2.5;

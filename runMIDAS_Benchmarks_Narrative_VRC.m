@@ -144,7 +144,7 @@ runList = zeros(length(experimentList),1);
 
 setenv('MW_PCT_TRANSPORT_HEARTBEAT_INTERVAL', '100000');
 
-for indexI = 1:length(experimentList)
+parfor indexI = 1:length(experimentList)
 %for indexI = 1:length(experimentList)
     if(runList(indexI) == 0)
         input = experimentList{indexI};
